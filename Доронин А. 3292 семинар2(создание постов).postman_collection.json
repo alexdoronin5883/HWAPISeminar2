@@ -1,0 +1,1182 @@
+{
+	"info": {
+		"_postman_id": "d3e4003d-4fa7-4803-aa49-391f3c35828f",
+		"name": "Доронин А. 3292 семинар2(создание постов)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25328035"
+	},
+	"item": [
+		{
+			"name": "User Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "qwer159",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "d99744d1f8",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/login",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Admin/OneDrive/Рабочий стол/img.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Собака породы Бигль",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Немного о породе",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts without token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Admin/OneDrive/Рабочий стол/img.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Собака породы Бигль",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Немного о породе",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts status isDraft",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Admin/OneDrive/Рабочий стол/img.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Собака породы Бигль",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Немного о породе",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2022-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts delayPublishTo < today",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Admin/OneDrive/Рабочий стол/img.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Собака породы Бигль",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Немного о породе",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "1999-06-22",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts title >40 symbol.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Admin/OneDrive/Рабочий стол/img.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Собака породы Бигль Собака породы Бигль Собака породы Бигль ",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Немного о породе",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts description >100 symbol.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Admin/OneDrive/Рабочий стол/img.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Собака породы Бигль",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Немного о породе Немного о породеНемного о породеНемного о породеНемного о породеНемного о породеНемного о породеНемного о породеНемного о породеНемного о породеНемного о породе",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts content >1000 symbol.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Admin/OneDrive/Рабочий стол/img.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Собака породы Бигль",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Немного о породе ",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts imeg >2Mb.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Admin/OneDrive/Рабочий стол/IMG_9843.JPG"
+						},
+						{
+							"key": "title",
+							"value": "Собака породы Бигль",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Немного о породе",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create empty posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts only imeg",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Admin/OneDrive/Рабочий стол/img.jpg"
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts only title",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "Собака породы Бигль",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts only description",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Немного о породе",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create posts only content",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "content",
+							"value": "Существуют разные версии происхождения породы. Одна из них говорит о том, что к созданию этого вида гончих были причастны римляне, которые завезли их в свою северную английскую провинцию. Английская версия утверждает, что таких собак успешно разводили бритты задолго до того, как стать вассалами Римской империи. Согласно этой версии, бигли были верными спутниками рыцарей Круглого Стола. При этом все версии сходятся в том, что современный облик бигля определился именно в Англии.",
+							"type": "text"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-05-12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": null
+		}
+	]
+}
